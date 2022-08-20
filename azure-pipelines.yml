@@ -1,13 +1,14 @@
 pool:
-  vmImage: 'ubuntu-18.04' # examples of other options: 'macOS-10.15', 'windows-2019'
-  steps:
+  vmImage: 'windows-latest'
 
-- task: UseDotNet@2
-  inputs:
-    version: '5.0.x'
-    includePreviewVersions: true # Required for preview versions
+variables:
+  buildConfiguration: 'Release'
 
-- task: UseDotNet@2
+steps:
+
+
+- task: DotNetCoreCLI@2
   inputs:
-    version: '3.0.x'
-    packageType: runtime
+    command: 'build'
+    arguments: '--configuration $(buildConfiguration)'
+  displayName: 'dotnet build $(buildConfiguration)'
